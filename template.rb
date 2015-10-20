@@ -7,9 +7,7 @@ ASSET_URI = "#{REPO_URI}/#{REPO_BRANCH}"
 
 # twitter bootstap gems
 gem 'bootstrap-sass'
-gem 'bootswatch-rails'
 gem 'font-awesome-rails'
-gem 'simple_form'
 
 Bundler.with_clean_env do
   run 'bundle install --path vendor/bundle -j 4'
@@ -36,21 +34,3 @@ run "wget #{ASSET_URI}/app/assets/javascripts/application.js -P app/assets/javas
 
 run 'rm -rf app/assets/stylesheets/application.css'
 run "wget #{ASSET_URI}/app/assets/stylesheets/application.css.scss -P app/assets/stylesheets/"
-
-# install bootstrap simple_form
-generate 'simple_form:install --bootstrap'
-
-# common partial template
-partial_template_sources = [].tap do |sources|
-  if yes?('Install flash template?[yes]')
-    sources << "#{ASSET_URI}/app/views/layouts/_flashes.html.erb"
-  end
-
-  if yes?('Install navigation template?[yes]')
-    sources << "#{ASSET_URI}/app/views/layouts/_navigation.html.erb"
-  end
-end
-
-partial_template_sources.each do |source|
-  run "wget #{source} -P app/views/layouts/"
-end
