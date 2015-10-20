@@ -1,5 +1,7 @@
+require 'bundler'
+
 # define github repository uri
-REPO_URI = 'https://raw.github.com/haazime/prototype_rails_template'
+REPO_URa = 'https://raw.github.com/haazime/prototype_rails_template'
 REPO_BRANCH = 'master'
 ASSET_URI = "#{REPO_URI}/#{REPO_BRANCH}"
 
@@ -7,13 +9,11 @@ ASSET_URI = "#{REPO_URI}/#{REPO_BRANCH}"
 gem 'bootstrap-sass'
 gem 'bootswatch-rails'
 gem 'font-awesome-rails'
+gem 'simple_form'
 
-# assets for bootstrap
-run 'rm -rf app/assets/javascripts/application.js'
-run "wget #{ASSET_URI}/app/assets/javascripts/application.js -P app/assets/javascripts/"
-
-run 'rm -rf app/assets/stylesheets/application.css'
-run "wget #{ASSET_URI}/app/assets/stylesheets/application.css.scss -P app/assets/stylesheets/"
+Bundler.with_clean_env do
+  run 'bundle install --path vendor/bundle -j 4'
+end
 
 # config/application.rb
 application do
@@ -29,3 +29,13 @@ run 'wget https://raw.github.com/svenfuchs/rails-i18n/master/rails/locale/ja.yml
 # gitignore
 remove_file '.gitignore'
 run "wget #{ASSET_URI}/gitignore -O .gitignore"
+
+# assets for bootstrap
+run 'rm -rf app/assets/javascripts/application.js'
+run "wget #{ASSET_URI}/app/assets/javascripts/application.js -P app/assets/javascripts/"
+
+run 'rm -rf app/assets/stylesheets/application.css'
+run "wget #{ASSET_URI}/app/assets/stylesheets/application.css.scss -P app/assets/stylesheets/"
+
+# install bootstrap simple_form
+generate 'simple_form:install --bootstrap'
