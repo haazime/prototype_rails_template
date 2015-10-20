@@ -1,7 +1,7 @@
 require 'bundler'
 
 # define github repository uri
-REPO_URa = 'https://raw.github.com/haazime/prototype_rails_template'
+REPO_URI = 'https://raw.github.com/haazime/prototype_rails_template'
 REPO_BRANCH = 'master'
 ASSET_URI = "#{REPO_URI}/#{REPO_BRANCH}"
 
