@@ -52,3 +52,6 @@ run "wget #{ASSET_URI}/app/assets/javascripts/application.js -P app/assets/javas
 
 run 'rm -rf app/assets/stylesheets/application.css'
 run "wget #{ASSET_URI}/app/assets/stylesheets/application.css.scss -P app/assets/stylesheets/"
+
+# bootstrap generation
+generate 'bootstrap:install --force --stylesheet-engine=scss'
