@@ -1,7 +1,21 @@
+# define github repository uri
+REPO_URI = 'https://raw.github.com/haazime/prototype_rails_template'
+REPO_BRANCH = 'master'
+ASSET_URI = "#{REPO_URI}/#{REPO_BRANCH}"
+
+# twitter bootstap gems
 gem 'bootstrap-sass'
 gem 'bootswatch-rails'
 gem 'font-awesome-rails'
 
+# assets for bootstrap
+run 'rm -rf app/assets/javascripts/application.js'
+run "wget #{ASSET_URI}/app/assets/javascripts/application.js -P app/assets/javascripts/"
+
+run 'rm -rf app/assets/stylesheets/application.css'
+run "wget #{ASSET_URI}/app/assets/stylesheets/application.css.scss -P app/assets/stylesheets/"
+
+# config/application.rb
 application do
   %q`
     config.time_zone = 'Tokyo'
@@ -9,28 +23,9 @@ application do
   `
 end
 
+# i18n japanese locale
 run 'wget https://raw.github.com/svenfuchs/rails-i18n/master/rails/locale/ja.yml -P config/locales/'
 
+# gitignore
 remove_file '.gitignore'
-create_file '.gitignore' do
-  body = <<-EOS
-/.bundle
-/vendor/bundle
-/db/*.sqlite3
-/log/*.log
-/tmp
-.DS_Store
-/public/assets*
-/config/database.yml
-newrelic.yml
-.foreman
-.env
-doc/
-*.swp
-*~
-.project
-.idea
-.secret
-/*.iml
-  EOS
-end
+run "wget #{ASSET_URI}/gitignore"
