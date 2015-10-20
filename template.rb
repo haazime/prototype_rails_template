@@ -8,7 +8,7 @@ ASSET_URI = "#{REPO_URI}/#{REPO_BRANCH}"
 # twitter bootstap gems
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
-gem 'boostrap-generators'
+gem 'bootstrap-generators'
 
 Bundler.with_clean_env do
   run 'bundle install --path vendor/bundle -j 4'
