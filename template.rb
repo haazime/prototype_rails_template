@@ -8,6 +8,7 @@ ASSET_URI = "#{REPO_URI}/#{REPO_BRANCH}"
 # twitter bootstap gems
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
+gem 'boostrap-generators'
 
 Bundler.with_clean_env do
   run 'bundle install --path vendor/bundle -j 4'
@@ -16,8 +17,25 @@ end
 # config/application.rb
 application do
   %q`
+    # localize
     config.time_zone = 'Tokyo'
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :ja
+
+    # generators
+    config.generators do |g|
+      g.orm :active_record
+      g.template_engine :erb
+      #g.test_framework  :rspec, :fixture => true
+      #g.fixture_replacement :factory_girl, :dir => "spec/factories"
+      g.view_specs false
+      g.controller_specs false
+      g.routing_specs false
+      g.helper_specs false
+      g.request_specs false
+      g.assets false
+      g.helper false
+    end
   `
 end
 
