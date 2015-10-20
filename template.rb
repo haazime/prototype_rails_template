@@ -39,3 +39,18 @@ run "wget #{ASSET_URI}/app/assets/stylesheets/application.css.scss -P app/assets
 
 # install bootstrap simple_form
 generate 'simple_form:install --bootstrap'
+
+# common partial template
+partial_template_sources = [].tap do |sources|
+  if yes?('Install flash template?[yes]')
+    sources << "#{ASSET_URI}/app/views/layouts/_flashes.html.erb"
+  end
+
+  if yes?('Install navigation template?[yes]')
+    sources << "#{ASSET_URI}/app/views/layouts/_navigation.html.erb"
+  end
+end
+
+partial_template_sources.each do |source|
+  run "wget #{source} -P app/views/layouts/"
+end
