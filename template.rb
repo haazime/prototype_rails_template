@@ -28,4 +28,4 @@ run 'wget https://raw.github.com/svenfuchs/rails-i18n/master/rails/locale/ja.yml
 
 # gitignore
 remove_file '.gitignore'
-run "wget #{ASSET_URI}/gitignore"
+run "wget #{ASSET_URI}/gitignore -O .gitignore"
