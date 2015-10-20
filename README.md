@@ -14,5 +14,5 @@ bundle --path vendor/bundle
 - Run `rails new` with this application template
 
 ```bash
-bundle exec rails new . -T -B -m 'https://raw.github.com/haazime/prototype_rails_template/template.rb'
+bundle exec rails new . -T -B -m https://raw.github.com/haazime/prototype_rails_template/template.rb
 ```
